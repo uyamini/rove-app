@@ -13,7 +13,7 @@ router.post('/activities/:activityId/reviews', async (req, res) => {
       const review = await Review.create({
         content,
         rating,
-        // author: req.user._id, once authentication is implemented
+        author: req.user._id,
       });
   
       // Add the review reference to the activity

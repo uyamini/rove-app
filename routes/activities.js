@@ -5,19 +5,28 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 const Activity = require('../models/activity');
 const Review = require('../models/review');
 
+router.get('/activities/new', ensureLoggedIn, activitiesController.newActivity);
+
 // Route for displaying a single activity with its reviews
 router.get('/activities/:id', async (req, res) => {
     try {
-        const activity = await Activity.findById(req.params.id).populate('reviews');
-        res.render('activities/activity', { activity, reviews: activity.reviews });
+        const activity = await Activity.findById(req.params.id)
+            .populate({
+                path: 'reviews',
+                populate: { path: 'author' }
+            });
+
+        res.render('activities/activity', {
+            title: 'Activity Details', // Include the title here
+            activity: activity,
+            user: req.user // Make sure you're also passing the user object if you're using authentication
+        });
     } catch (error) {
         console.error('Error fetching activity details:', error);
         res.status(500).send('Error fetching activity details');
     }
 });
 
-// Route to display form to create a new activity
-router.get('/activities/new', /*ensureLoggedIn,*/ activitiesController.newActivity);
 
 // Route to post the new activity form
 router.post('/activities', async (req, res) => {
@@ -59,7 +68,8 @@ router.get('/activities', async (req, res) => {
       res.status(500).send('Failed to load activities.');
     }
   });
-  router.get('/activities/edit/:id', async (req, res) => {
+
+  router.get('/activities/edit/:id', ensureLoggedIn, async (req, res) => {
     try {
         const activity = await Activity.findById(req.params.id);
         res.render('activities/edit', { activity });
@@ -85,7 +95,7 @@ router.put('/activities/:id', async (req, res) => {
 });
 
   
-  router.get('/activities/delete/:id', async (req, res) => {
+  router.get('/activities/delete/:id', ensureLoggedIn, async (req, res) => {
     try {
       await Activity.findByIdAndDelete(req.params.id);
       res.redirect('/activities');

@@ -8,6 +8,7 @@
     <p>Location: <%= activity.location %></p>
     <p>Cost: $<%= activity.cost.toFixed(2) %></p>
 
+    <% if (user) { %>
     <h3>Submit a Review</h3>
     <form action="/activities/<%= activity._id %>/reviews" method="POST">
         <div class="form-group">
@@ -20,20 +21,21 @@
         </div>
         <button type="submit" class="btn btn-primary">Post Review</button>
     </form>
+    <% } %>
 
     <h3>Reviews</h3>
-    <% if (activity.reviews && activity.reviews.length > 0) { %>
-        <ul>
-            <% activity.reviews.forEach(review => { %>
-                <li>
-                    <p><%= review.content %></p>
-                    <p>Rating: <%= review.rating %></p>
-                </li>
-            <% }) %>
-        </ul>
-    <% } else { %>
-        <p>No reviews yet.</p>
-    <% } %>
+    <% activity.reviews.forEach(review => { %>
+        <div>
+            <p><%= review.content %></p>
+            <p>Rating: <%= review.rating %></p>
+            <!-- Display delete button only for reviews made by the logged-in user -->
+            <% if (user && review.author.equals(user._id)) { %>
+                <form action="/reviews/<%= review._id %>?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-sm btn-danger">&times;</button>
+                </form>
+            <% } %>
+        </div>
+    <% }) %>
 </div>
 
 <%- include('../partials/footer') %>
