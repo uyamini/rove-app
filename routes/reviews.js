@@ -4,6 +4,11 @@ const router = express.Router();
 const Review = require('../models/review'); // Adjust the path as needed to locate your Review model correctly
 const Activity = require('../models/activity');
 
+// DELETE route for removing a review by its ID
+const reviewController = require('../controllers/reviewController');
+
+router.delete('/reviews/:reviewId', reviewController.deleteReview);
+
 // Route to handle review submission
 router.post('/activities/:activityId/reviews', async (req, res) => {
     const { content, rating } = req.body;

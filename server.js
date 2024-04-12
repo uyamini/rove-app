@@ -14,6 +14,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const activityRoutes = require('./routes/activities');
 const reviewsRouter = require('./routes/reviews'); // Import the reviews router
+const reviewController = require('./controllers/reviewController'); // Assuming you have this controller
 
 //for PUT and DELETE requests
 const methodOverride = require('method-override');
@@ -68,6 +69,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use(activityRoutes);
 app.use('/', reviewsRouter); // Use the reviews router
+app.use('/reviews', reviewsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
