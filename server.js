@@ -4,6 +4,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+//OAuth
+var session = require('express-session');
+var passport = require('passport');
 
 var app = express();
 
@@ -17,14 +20,13 @@ const methodOverride = require('method-override');
 
 //OAuth
 const ensureLoggedIn = require('./config/ensureLoggedIn');
-const passport = require('passport');
 const auths = require('./routes/auths');
 const protectedRouteController = require('./controllers/protectedRouteController');
 
 //OAuth
 require('dotenv').config();
-//require('./config/passport');
 require('./config/database');
+require('./config/passport');
 
 
 
@@ -38,8 +40,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
+
 //OAuth
-//app.use(require('express-session')({ secret: 'someSecret', resave: true, saveUninitialized: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+//Always mount AFTER the session middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Add this middleware BELOW passport middleware
+app.use(function (req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+
 //app.use(passport.initialize());
 //app.use(passport.session());
 //app.use('/protectedRoute', /*ensureLoggedIn,*/ protectedRouteController.getProtectedPage);
