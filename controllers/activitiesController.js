@@ -39,3 +39,17 @@ exports.listActivities = async (req, res) => {
     }
 };
 
+exports.likeActivity = async (req, res) => {
+    try {
+      // Find the activity by ID and increment the likes
+      const activity = await Activity.findById(req.params.id);
+      activity.likes += 1; // Increment the like count
+      await activity.save();
+  
+      res.redirect('/activities'); // Redirect back to the activities page or wherever appropriate
+    } catch (error) {
+      console.error('Error liking activity:', error);
+      res.status(500).send('Error processing like action.');
+    }
+  };
+  

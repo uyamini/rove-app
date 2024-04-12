@@ -5,6 +5,9 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 const Activity = require('../models/activity');
 const Review = require('../models/review');
 
+// Assuming you have an Express router for activities
+router.post('/activities/:id/like', ensureLoggedIn, activitiesController.likeActivity);
+
 router.get('/activities/new', ensureLoggedIn, activitiesController.newActivity);
 
 // Route for displaying a single activity with its reviews
