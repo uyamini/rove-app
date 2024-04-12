@@ -23,15 +23,17 @@ To start exploring, visit [Rove](https://rove-project-3cd898409199.herokuapp.com
 
 ## Features
 
+<img width="1285" alt="Screenshot 2024-04-12 at 7 42 19 AM" src="https://github.com/uyamini/rove-app/assets/59433243/3cf673c1-4d2b-4e88-a778-a813fa3bbf48">
+
 - Discover activities based on categories like food, social, health and fitness, sights, and parties.
 - Filter activities based on categories to find exactly what you're looking for.
-- <img width="1440" alt="Screenshot 2024-04-12 at 7 43 18 AM" src="https://github.com/uyamini/rove-app/assets/59433243/566c38f7-0753-4a34-b321-8e395e9d733e">
+<img width="1440" alt="Screenshot 2024-04-12 at 7 43 18 AM" src="https://github.com/uyamini/rove-app/assets/59433243/566c38f7-0753-4a34-b321-8e395e9d733e">
 
 - Create and share your own activities with the community.
-- <img width="1349" alt="Screenshot 2024-04-12 at 7 44 23 AM" src="https://github.com/uyamini/rove-app/assets/59433243/33552689-5722-4a36-873a-d86ee6a1a8ce">
+<img width="1349" alt="Screenshot 2024-04-12 at 7 44 23 AM" src="https://github.com/uyamini/rove-app/assets/59433243/33552689-5722-4a36-873a-d86ee6a1a8ce">
 
 - Review and like activities shared by others.
-- <img width="1285" alt="Screenshot 2024-04-12 at 7 42 19 AM" src="https://github.com/uyamini/rove-app/assets/59433243/ef9c0ee5-d8eb-49e6-9b37-60c11f5c04fb">
+<img width="1440" alt="Screenshot 2024-04-12 at 7 46 30 AM" src="https://github.com/uyamini/rove-app/assets/59433243/9d1a2918-5ac1-461c-9ff5-4adabfa34e1a">
 
 - Secure authentication using Google OAuth.
 
