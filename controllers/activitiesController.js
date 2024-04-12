@@ -1,3 +1,4 @@
+//controllers/activityController.js
 const Activity = require('../models/activity');
 
 exports.newActivity = (req, res) => {
@@ -6,8 +7,7 @@ exports.newActivity = (req, res) => {
 
 exports.createActivity = async (req, res) => {
     try {
-        //req.body.createdBy = req.user._id; // Assuming user ID is stored in req.user
-        const userId = 'someHardcodedUserId';
+        req.body.createdBy = req.user._id; // Assuming user ID is stored in req.user
         const newActivity = await Activity.create(req.body);
         res.redirect(`/activities/${newActivity._id}`);
     } catch (error) {
