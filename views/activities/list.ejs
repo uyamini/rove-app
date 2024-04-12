@@ -1,5 +1,20 @@
 <%- include('../partials/header') %>
 
+<div class="filter-by-category mb-3">
+    <form action="/activities" method="GET">
+        <div class="form-group">
+            <label for="categoryFilter">Filter by Category:</label>
+            <select class="form-control" id="categoryFilter" name="category" onchange="this.form.submit()">
+                <option value="">All Categories</option>
+                <option value="food" <%= selectedCategory === 'food' ? 'selected' : '' %>>Food</option>
+                <option value="social" <%= selectedCategory === 'social' ? 'selected' : '' %>>Social</option>
+                <option value="health and fitness" <%= selectedCategory === 'health and fitness' ? 'selected' : '' %>>Health and Fitness</option>
+                <option value="sights" <%= selectedCategory === 'sights' ? 'selected' : '' %>>Sights</option>
+                <option value="parties" <%= selectedCategory === 'parties' ? 'selected' : '' %>>Parties</option>                
+            </select>
+        </div>
+    </form>
+</div>
 <div class="container mt-4">
     <h2>Activities List</h2>
     <% if (user) { %>

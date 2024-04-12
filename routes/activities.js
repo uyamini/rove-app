@@ -60,14 +60,26 @@ router.post('/activities', async (req, res) => {
 router.get('/activities', activitiesController.listActivities);
 
 router.get('/activities', async (req, res) => {
-    try {
-      const activities = await Activity.find({}).sort({ date: -1 }); // Fetch all activities and sort them by date
-      res.render('activities/list', { activities }); // Render a view called 'list' inside 'views/activities' directory
-    } catch (error) {
-      console.error('Failed to fetch activities:', error);
-      res.status(500).send('Failed to load activities.');
+    const categoryFilter = req.query.category;
+    
+    let query = {};
+    if (categoryFilter) {
+        query.category = categoryFilter;
     }
-  });
+
+    try {
+        const activities = await Activity.find(query).sort({ date: -1 });
+        res.render('activities/list', { 
+            title: 'Activities List',
+            activities: activities,
+            user: req.user, // Include this if you're passing the user object for authentication checks
+            selectedCategory: categoryFilter // Pass the selected category to the view for preserving the selection
+        });
+    } catch (error) {
+        console.error('Failed to fetch activities:', error);
+        res.status(500).send('Failed to load activities.');
+    }
+});
 
   router.get('/activities/edit/:id', ensureLoggedIn, async (req, res) => {
     try {

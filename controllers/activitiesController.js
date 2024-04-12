@@ -16,12 +16,26 @@ exports.createActivity = async (req, res) => {
     }
 };
 
+// In your controller method for the GET /activities route
 exports.listActivities = async (req, res) => {
+    const categoryFilter = req.query.category; // This captures the category filter from the query string
+    
+    let filter = {};
+    if (categoryFilter) {
+        filter.category = categoryFilter;
+    }
+
     try {
-        const activities = await Activity.find().sort({ likes: -1 }); // Sort by likes
-        res.render('activities/list', { title: 'Activities', activities });
+        const activities = await Activity.find(filter).sort({ date: -1 });
+        res.render('activities/list', {
+            title: 'Activities List',
+            activities: activities,
+            user: req.user, // Assuming you're passing this for authentication-related UI
+            selectedCategory: categoryFilter || '', // Pass the selected category or an empty string if none is selected
+        });
     } catch (error) {
-        console.log(error);
-        res.send("Failed to list activities.");
+        console.error('Failed to fetch activities:', error);
+        res.status(500).send('Failed to load activities.');
     }
 };
+
