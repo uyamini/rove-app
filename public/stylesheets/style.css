@@ -1,19 +1,66 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Global settings */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url('https://source.unsplash.com/1600x900/?nature,calm'); /* Subtle, abstract nature background */
+  background-size: cover;
+  background-position: center;
+  color: #4A4A4A; /* Soft text color for readability */
 }
 
-a {
-  color: #00B7FF;
+/* Navbar customizations */
+.navbar-light.bg-light {
+  background-color: rgba(255, 255, 255, 0.8) !important; /* Translucent white navbar */
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
 }
 
-.login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 34px;
+.navbar-brand, .nav-link {
+  color: #6C757D !important; /* Soft text color */
 }
 
-.login img {
-  height: 30px;
+.nav-link:hover {
+  color: #5A5A5A !important; /* Slightly darker on hover */
+}
+
+/* Main content styles */
+.main-content {
+  background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white for content background */
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 80px; /* Adjust based on navbar size */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.starter-template h1, .starter-template .lead {
+  color: #333;
+}
+
+/* Custom button styles */
+.btn-custom {
+  background-color: #E6E6FA; /* Light lavender */
+  color: #495057;
+  border: none;
+}
+
+.btn-custom:hover {
+  background-color: #D8BFD8; /* Thistle, slightly darker lavender */
+  color: #343a40;
+}
+
+.btn-secondary-custom {
+  background-color: #DDA0DD; /* Plum, deeper lavender */
+  color: #ffffff;
+  border: none;
+}
+
+.btn-secondary-custom:hover {
+  background-color: #BA55D3; /* Medium orchid, richer lavender */
+  color: #ffffff;
+}
+
+/* Adjusting padding for a more airy feel */
+.starter-template {
+  padding: 4rem 1.5rem;
+  text-align: center;
 }

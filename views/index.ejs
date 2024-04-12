@@ -6,18 +6,9 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <style>
-        body {
-            padding-top: 5rem;
-        }
-        .starter-template {
-            padding: 3rem 1.5rem;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
         <a class="navbar-brand" href="/">Project Rove</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -35,15 +26,14 @@
         </div>
     </nav>
 
-    <main role="main" class="container">
-
+    <main role="main" class="container main-content">
         <div class="starter-template">
             <h1>Welcome to Rove</h1>
             <p class="lead">Bored around campus?<br> Discover, join, and share experiences that make university life awesome.</p>
-            <a href="/activities" class="btn btn-primary">Discover Activities</a>
+            <a href="/activities" class="btn btn-custom">Discover Activities</a>
+            <a href="/auth/google" class="btn btn-secondary-custom ml-2">Join Our Community</a>
         </div>
-
-    </main><!-- /.container -->
+    </main>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.10/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
