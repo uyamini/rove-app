@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-4">
+    <h2>Edit Activity</h2>
+    <form action="/activities/<%= activity._id %>?_method=PUT" method="POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="<%= activity.name %>" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required><%= activity.description %></textarea>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select class="form-control" id="category" name="category" required>
+                <option value="food" <%= activity.category === 'food' ? 'selected' : '' %>>Food</option>
+                <option value="social" <%= activity.category === 'social' ? 'selected' : '' %>>Social</option>
+                <option value="health and fitness" <%= activity.category === 'health and fitness' ? 'selected' : '' %>>Health and Fitness</option>
+                <option value="sights" <%= activity.category === 'sights' ? 'selected' : '' %>>Sights</option>
+                <option value="parties" <%= activity.category === 'parties' ? 'selected' : '' %>>Parties</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" class="form-control" id="date" name="date" value="<%= activity.date.toISOString().split('T')[0] %>" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location" value="<%= activity.location %>" required>
+        </div>
+        <div class="form-group">
+            <label for="cost">Cost</label>
+            <input type="number" class="form-control" id="cost" name="cost" step="0.01" value="<%= activity.cost %>" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+
+<%- include('../partials/footer') %>

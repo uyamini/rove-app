@@ -1,0 +1,20 @@
+<%- include('../partials/header') -%>
+<div class="container">
+    <h1>Create New Activity</h1>
+    <form action="/activities" method="POST">
+        <input type="text" name="name" placeholder="Activity Name" required>
+        <textarea name="description" placeholder="Description" required></textarea>
+        <select name="category" required>
+            <option value="food">Food</option>
+            <option value="social">Social</option>
+            <option value="health and fitness">Health and Fitness</option>
+            <option value="sights">Sights</option>
+            <option value="parties">Parties</option>
+        </select>
+        <input type="date" name="date" required>
+        <input type="text" name="location" placeholder="Location" required>
+        <input type="number" name="cost" placeholder="Cost" step="0.01" required>
+        <button type="submit">Submit</button>
+    </form>    
+</div>
+<%- include('../partials/footer') -%>
