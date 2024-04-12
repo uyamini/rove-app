@@ -29,7 +29,7 @@
             <p><%= review.content %></p>
             <p>Rating: <%= review.rating %></p>
             <!-- Display delete button only for reviews made by the logged-in user -->
-            <% if (user && review.author.equals(user._id)) { %>
+            <% if (user && review.author && review.author.equals(user._id)) { %>
                 <form action="/reviews/<%= review._id %>?_method=DELETE" method="POST" style="display: inline;">
                     <button type="submit" class="btn btn-sm btn-danger">&times;</button>
                 </form>

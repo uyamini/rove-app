@@ -1,12 +1,29 @@
 /* Global settings */
+/* Global settings */
 body, html {
   height: 100%;
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-image: url('https://source.unsplash.com/1600x900/?nature,calm'); /* Subtle, abstract nature background */
+  color: #4A4A4A; /* Soft text color for readability */
+}
+
+body::before {
+  content: "";
+  position: fixed; /* Use fixed to cover the entire screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://source.unsplash.com/1600x900/?nature,calm'); /* Your background image */
   background-size: cover;
   background-position: center;
-  color: #4A4A4A; /* Soft text color for readability */
+  opacity: 0.5; /* Adjust opacity here */
+  z-index: -1; /* Ensure the image stays behind the content */
+}
+
+.content {
+  position: relative;
+  z-index: 1; /* Higher than body::before */
 }
 
 /* Navbar customizations */
@@ -64,3 +81,162 @@ body, html {
   padding: 4rem 1.5rem;
   text-align: center;
 }
+
+/* Filter and Activities Styles */
+.filter-by-category {
+  margin-bottom: 2rem;
+}
+
+.form-control {
+  background-color: #f3e8ff; /* Light lavender background */
+  border: 1px solid #d1b3ff; /* Slightly darker lavender border */
+  color: #6c757d; /* Grey text for contrast */
+}
+
+.activities-title {
+  color: #4a306d; /* Dark lavender */
+  margin-bottom: 1.5rem;
+}
+
+.list-group-item {
+  background-color: #fafaff; /* Very light lavender */
+  border: 1px solid #eee; /* Light border for definition */
+  margin-bottom: 1rem;
+  border-radius: 0.5rem; /* Rounded corners */
+}
+
+.activity-name {
+  color: #4a306d; /* Dark lavender, for title */
+}
+
+.btn-custom, .btn-like, .btn-view-details {
+  background-color: #957DAD; /* Standard lavender */
+  color: white;
+  margin-right: 0.5rem;
+}
+
+.btn-custom:hover, .btn-like:hover, .btn-view-details:hover {
+  background-color: #806D9E; /* Darker lavender on hover */
+  color: white;
+}
+
+/* Like button special styling */
+.btn-like {
+  background-color: #DDA0DD; /* Plum */
+  border-color: #DDA0DD; /* Plum */
+}
+
+/* Adjust button styling for edit and delete actions */
+.btn-secondary, .btn-danger {
+  margin: 0.2rem;
+}
+
+.like-form {
+  display: inline-block; /* Align with like count */
+}
+
+
+.create-activity-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.create-activity-form h1 {
+  color: #6c757d;
+  font-size: 1.75rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.75rem; /* Ensure this is sufficient */
+  font-size: 1rem;
+  line-height: 1.5; /* This helps with text alignment */
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  height: auto; /* Ensures the height adjusts based on content and padding */
+}
+
+/* Specific adjustments for select to ensure cross-browser consistency */
+select.form-control {
+  -webkit-appearance: none; /* Removes default Chrome and Safari styling */
+  -moz-appearance: none;    /* Removes default Firefox styling */
+  appearance: none;         /* Removes default styling for IE */
+  background-position: right 0.75rem center; /* Adjusts background icon position */
+  background-repeat: no-repeat;
+  padding-right: 2.25rem; /* Adds more padding to the right for the dropdown arrow */
+}
+
+
+.form-control:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-submit {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+/* Filter by Category Styles */
+.filter-by-category {
+  margin-bottom: 2rem;
+  background-color: #f9f9f9; /* Light gray background */
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-by-category label {
+  font-weight: bold;
+  color: #4a306d; /* Dark lavender */
+}
+
+.filter-by-category select {
+  width: 100%;
+  padding: 0.75rem; /* Ensure consistent padding */
+  font-size: 1rem;
+  color: #6c757d; /* Soft text color */
+  background-color: #fff; /* White background */
+  border: 1px solid #ced4da; /* Light gray border */
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.filter-by-category select:focus {
+  border-color: #80bdff; /* Focus color */
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Focus box shadow */
+}
+
+.filter-by-category option {
+  padding: 0.5rem; /* Adjust option padding */
+}
+

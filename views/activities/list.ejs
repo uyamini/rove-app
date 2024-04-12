@@ -3,7 +3,7 @@
 <div class="filter-by-category mb-3">
     <form action="/activities" method="GET">
         <div class="form-group">
-            <label for="categoryFilter">Filter by Category:</label>
+            <label for="categoryFilter" class="form-label">Filter by Category:</label>
             <select class="form-control" id="categoryFilter" name="category" onchange="this.form.submit()">
                 <option value="">All Categories</option>
                 <option value="food" <%= selectedCategory === 'food' ? 'selected' : '' %>>Food</option>
@@ -15,24 +15,26 @@
         </div>
     </form>
 </div>
+
 <div class="container mt-4">
-    <h2>Activities List</h2>
+    <h2 class="activities-title">Activities List</h2>
     <% if (user) { %>
-    <a href="/activities/new" class="btn btn-primary mb-3">Add New Activity</a>
+    <a href="/activities/new" class="btn btn-custom mb-3">Add New Activity</a>
     <% } %>
     <ul class="list-group">
-        <% activities.forEach(activity => { %>
-            <li class="list-group-item">
-                <h5 class="mb-1"><%= activity.name %></h5>
+        <% 
+        activities.sort((a, b) => b.likes - a.likes).forEach(activity => { %>
+            <li class="list-group-item activity-item">
+                <h5 class="mb-1 activity-name"><%= activity.name %></h5>
                 <p class="mb-1"><%= activity.description %></p>
                 <p class="mb-1">Category: <%= activity.category %></p>
                 <p class="mb-1">Date: <%= activity.date.toDateString() %></p>
                 <p class="mb-1">Location: <%= activity.location %>, Cost: $<%= activity.cost.toFixed(2) %></p>
-                <form action="/activities/<%= activity._id %>/like" method="POST">
-                    <button type="submit">Like</button>
-                  </form>
-                  <p>Likes: <%= activity.likes %></p>
-                <a href="/activities/<%= activity._id %>">View Details</a>
+                <form action="/activities/<%= activity._id %>/like" method="POST" class="like-form">
+                    <button type="submit" class="btn btn-like">Like</button>
+                </form>
+                <p>Likes: <%= activity.likes %></p>
+                <a href="/activities/<%= activity._id %>" class="btn btn-view-details">View Details</a>
                 <a href="/activities/edit/<%= activity._id %>" class="btn btn-secondary">Edit</a>
                 <a href="/activities/delete/<%= activity._id %>" class="btn btn-danger">Delete</a>
             </li>
