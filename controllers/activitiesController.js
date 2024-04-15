@@ -16,7 +16,6 @@ exports.createActivity = async (req, res) => {
     }
 };
 
-// In your controller method for the GET /activities route
 exports.listActivities = async (req, res) => {
     const categoryFilter = req.query.category; // This captures the category filter from the query string
     
