@@ -5,12 +5,11 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 const Activity = require('../models/activity');
 const Review = require('../models/review');
 
-// Assuming you have an Express router for activities
 router.post('/activities/:id/like', ensureLoggedIn, activitiesController.likeActivity);
 
 router.get('/activities/new', ensureLoggedIn, activitiesController.newActivity);
 
-// Route for displaying a single activity with its reviews
+//Route for displaying a single activity with its reviews
 router.get('/activities/:id', async (req, res) => {
     try {
         const activity = await Activity.findById(req.params.id)
@@ -20,9 +19,9 @@ router.get('/activities/:id', async (req, res) => {
             });
 
         res.render('activities/activity', {
-            title: 'Activity Details', // Include the title here
+            title: 'Activity Details',
             activity: activity,
-            user: req.user // Make sure you're also passing the user object if you're using authentication
+            user: req.user
         });
     } catch (error) {
         console.error('Error fetching activity details:', error);
@@ -31,32 +30,30 @@ router.get('/activities/:id', async (req, res) => {
 });
 
 
-// Route to post the new activity form
+//Route to post the new activity form
 router.post('/activities', async (req, res) => {
-    // Optionally, check if the user is authenticated
-    // const userId = req.user ? req.user._id : null;
-  
-    // Create a new activity from the form data
+    //Create a new activity from the form data
     const newActivityData = {
-      name: req.body.name,
-      description: req.body.description,
-      category: req.body.category,
-      date: req.body.date,
-      location: req.body.location,
-      cost: req.body.cost,
-      // createdBy: userId, // Uncomment and use when authentication is enabled
-      likes: 0, // Default to 0 likes
+        name: req.body.name,
+        description: req.body.description,
+        category: req.body.category,
+        date: req.body.date,
+        location: req.body.location,
+        cost: req.body.cost,
+        // createdBy: userId,
+        likes: 0, //Default to 0 likes
     };
-  
+
     try {
-      const newActivity = new Activity(newActivityData);
-      await newActivity.save(); // Save the activity to the database
-      res.redirect('/activities'); // Redirect to the list of activities or a success page
+        const newActivity = new Activity(newActivityData);
+        await newActivity.save(); //Save the activity to the db
+        res.redirect('/activities'); //Redirect to the list of activities or a success page
     } catch (error) {
-      console.error('Error creating new activity:', error);
-      res.status(500).send('Error creating the activity.'); // Handle errors appropriately
+        console.error('Error creating new activity:', error);
+        res.status(500).send('Error creating the activity.');
     }
-  });
+});
+
   
 
 // Route to display activities
@@ -75,8 +72,8 @@ router.get('/activities', async (req, res) => {
         res.render('activities/list', { 
             title: 'Activities List',
             activities: activities,
-            user: req.user, // Include this if you're passing the user object for authentication checks
-            selectedCategory: categoryFilter // Pass the selected category to the view for preserving the selection
+            user: req.user, 
+            selectedCategory: categoryFilter 
         });
     } catch (error) {
         console.error('Failed to fetch activities:', error);

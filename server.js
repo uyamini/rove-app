@@ -13,8 +13,8 @@ var app = express();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const activityRoutes = require('./routes/activities');
-const reviewsRouter = require('./routes/reviews'); // Import the reviews router
-const reviewController = require('./controllers/reviewController'); // Assuming you have this controller
+const reviewsRouter = require('./routes/reviews');
+const reviewController = require('./controllers/reviewController');
 
 //for PUT and DELETE requests
 const methodOverride = require('method-override');
@@ -49,20 +49,16 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-//Always mount AFTER the session middleware
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Add this middleware BELOW passport middleware
 app.use(function (req, res, next) {
   res.locals.user = req.user;
   next();
 });
 
-//app.use(passport.initialize());
-//app.use(passport.session());
-//app.use('/protectedRoute', /*ensureLoggedIn,*/ protectedRouteController.getProtectedPage);
-//app.use(auths);
 
 // Routes
 app.use('/', indexRouter);
@@ -79,11 +75,9 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });

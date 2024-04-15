@@ -7,7 +7,7 @@ exports.newActivity = (req, res) => {
 
 exports.createActivity = async (req, res) => {
     try {
-        req.body.createdBy = req.user._id; // Assuming user ID is stored in req.user
+        req.body.createdBy = req.user._id; 
         const newActivity = await Activity.create(req.body);
         res.redirect(`/activities/${newActivity._id}`);
     } catch (error) {
@@ -30,7 +30,7 @@ exports.listActivities = async (req, res) => {
         res.render('activities/list', {
             title: 'Activities List',
             activities: activities,
-            user: req.user, // Assuming you're passing this for authentication-related UI
+            user: req.user, 
             selectedCategory: categoryFilter || '', // Pass the selected category or an empty string if none is selected
         });
     } catch (error) {
@@ -46,7 +46,7 @@ exports.likeActivity = async (req, res) => {
       activity.likes += 1; // Increment the like count
       await activity.save();
   
-      res.redirect('/activities'); // Redirect back to the activities page or wherever appropriate
+      res.redirect('/activities'); // Redirect back to the activities page
     } catch (error) {
       console.error('Error liking activity:', error);
       res.status(500).send('Error processing like action.');

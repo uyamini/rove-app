@@ -1,7 +1,7 @@
 // routes/reviews.js
 const express = require('express');
 const router = express.Router();
-const Review = require('../models/review'); // Adjust the path as needed to locate your Review model correctly
+const Review = require('../models/review');
 const Activity = require('../models/activity');
 
 // DELETE route for removing a review by its ID
@@ -21,7 +21,6 @@ router.post('/activities/:activityId/reviews', async (req, res) => {
         author: req.user._id,
       });
   
-      // Add the review reference to the activity
       await Activity.findByIdAndUpdate(activityId, { $push: { reviews: review._id } });
   
       res.redirect(`/activities/${activityId}`);

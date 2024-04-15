@@ -13,7 +13,7 @@ const activitySchema = new mongoose.Schema({
   cost: Number,
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   likes: { type: Number, default: 0 },
-  reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }] // References to Review objects
+  reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }]
 });
 
 module.exports = mongoose.model('Activity', activitySchema);
